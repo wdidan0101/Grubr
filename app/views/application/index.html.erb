@@ -1,0 +1,96 @@
+<!-- <div ng-view></div> -->
+
+<!-- <div id='left-side'>i'm the left side</div>
+<div id='right-side'>right side</div>
+ -->
+<%= render 'layouts/navbar' %>
+
+
+<div class="row fit">
+
+  <!-- Left Column Container -->
+  <div class="left col-xs-12 col-sm-4 col-md-4 partial">Grub:</div>
+
+  <!-- Right Column Container -->
+  <div class="right col-xs-8 col-md-8 partial">
+  	
+  	<!-- Tabs Container -->
+  	<section class="tab" ng-controller='TabController as tab'>
+
+  		<!-- The Tabs -->
+	    <ul class="nav nav-pills">
+	      <li ng-class="{ active: tab.isSet(1) }">
+	        <a href ng-click="tab.setTab(1)">Restaurants</a></li>
+	      <li ng-class="{ active: tab.isSet(2) }">
+	        <a href ng-click="tab.setTab(2)">Recipes</a></li>
+	      <li ng-class="{ active: tab.isSet(3) }">
+	        <a href ng-click="tab.setTab(3)">Stats</a></li>
+	    </ul>
+
+	    <!-- Tab Functionality -->
+	    <div ng-show="tab.isSet(1)" ng-controller="SelectController as store">
+	      <h4>Restaurants</h4>
+
+	      <div>
+		      <form class="navbar-form" ng-submit='store.submit()'>
+		        <div class="form-group">
+		          <input type="text" ng-model='store.term' class="form-control" placeholder="Search">
+		        </div>
+		      </form>
+		      <button ng-click='store.runSearch(store.term)' class="btn btn-default" value="Submit">Submit</button>
+	      </div>
+
+	      <!--  Restaurant Products Container  -->
+			<div class='list-group' >
+			      <!--  Product Container  -->
+			      <div class="list-group-item" ng-repeat="item in store.selection">
+			            brand: {{ item['fields']['brand_name'] }}
+			            <br>name: {{ item['fields']['item_name'] }}
+			            <br>calories: {{item['fields']['nf_calories']}}  g
+				        <br>total_fat: {{item['fields']['nf_total_fat']}} g
+				        <br>saturated_fat: {{item['fields']['nf_saturated_fat']}} g
+				        <br>trans_fat: {{item['fields']['nf_trans_fatty_acid']}} g
+				        <br>cholesterol: {{item['fields']['nf_cholesterol']}} mg
+				        <br>sodium: {{ item['fields']['nf_sodium']}} mg
+				        <br>total_carbs: {{ item['fields']['nf_total_carbohydrate'] }} g
+				        <br>fiber: {{ item['fields']['nf_dietary_fiber'] }} g
+				        <br>sugar: {{ item['fields']['nf_sugars'] }} g
+				        <br>protein: {{ item['fields']['nf_protein'] }} g
+				        <br>vitamin_a: {{ item['fields']['nf_vitamin_a_dv'] }} %
+				        <br>vitamin_c: {{ item['fields']['nf_vitamin_c_dv'] }} %
+				        <br>calcium: {{ item['fields']['nf_calcium_dv'] }} %
+				        <br>iron: {{ item['fields']['nf_iron_dv'] }} %
+			      </div>
+			</div>
+	    </div>
+	    <div ng-show="tab.isSet(2)">
+	      <h4>Some Recipes</h4>
+	    </div>
+	    <div ng-show="tab.isSet(3)">
+	        <h4>Your Stats</h4>
+	    </div>
+  	</section>
+</div>
+
+
+
+
+<!--   <section class="tab" ng-controller='TabController as tab'>
+    <ul class="nav nav-pills">
+      <li ng-class="{ active: tab.isSet(1) }">
+        <a href ng-click="tab.setTab(1)">Description</a></li>
+      <li ng-class="{ active: tab.isSet(2) }">
+        <a href ng-click="tab.setTab(2)">Specs</a></li>
+      <li ng-class="{ active: tab.isSet(3) }">
+        <a href ng-click="tab.setTab(3)">Reviews</a></li>
+    </ul>
+    <div ng-show="tab.isSet(1)">
+      <h4>Description</h4>
+    </div>
+    <div ng-show="tab.isSet(2)">
+      <h4>Specs</h4>
+    </div>
+    <div ng-show="tab.isSet(3)">
+      <h4>Reviews</h4>
+    </div>
+  </section>

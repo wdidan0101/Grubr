@@ -1,0 +1,35 @@
+<h1>Grubr</h1>
+
+<%#= debug @data['total_hits'] %>
+<%#= debug @data['hits'] %>
+
+<%= form_tag search_path, method: :get do %>
+  <%= text_field_tag :term %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<div id="menu">
+	<% @data['hits'].each do |d| %>
+		
+		<h3><%= d['fields']['brand_name'] %>
+		<%= d['fields']['item_name'] %>
+		<div class='button'><a href=''>Select</a></div> </h3>
+
+		<div>
+			<li>calories: <%= d['fields']['nf_calories'] %> g
+	        <li>total_fat: <%= d['fields']['nf_total_fat'] %> g
+	        <li>saturated_fat: <%= d['fields']['nf_saturated_fat'] %> g
+	        <li>trans_fat: <%= d['fields']['nf_trans_fatty_acid'] %> g
+	        <li>cholesterol: <%= d['fields']['nf_cholesterol'] %> mg
+	        <li>sodium: <%= d['fields']['nf_sodium'] %> mg
+	        <li>total_carbs: <%= d['fields']['nf_total_carbohydrate'] %> g
+	        <li>fiber: <%= d['fields']['nf_dietary_fiber'] %> g
+	        <li>sugar: <%= d['fields']['nf_sugars'] %> g
+	        <li>protein: <%= d['fields']['nf_protein'] %> g
+	        <li>vitamin_a: <%= d['fields']['nf_vitamin_a_dv'] %> %
+	        <li>vitamin_c: <%= d['fields']['nf_vitamin_c_dv'] %> %
+	        <li>calcium: <%= d['fields']['nf_calcium_dv'] %> %
+	        <li>iron: <%= d['fields']['nf_iron_dv'] %> %
+		</div>
+	<% end %> 
+</div>

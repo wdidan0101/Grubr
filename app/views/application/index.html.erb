@@ -7,19 +7,21 @@
 
   <!-- Left Column Container -->
   <div id='left' class="col-xs-12 col-sm-4 col-md-4 partial">
-  	<div>
-  		<div style="display:inline-block">Daily Grub:</div>
-  		<div style="display:inline-block">
-	  		<div><button ng-click='saveList()' class="btn btn-default saveButton">Save</button></div>
-  			<div><button ng-click='clearList()' class="btn btn-default clearButton">Clear</button></div>
+  	<div id='daily-grub'>
+  		<div id='daily-grub-label'>Daily Grub:</div>
+  		<div id='daily-grub-btns'>
+  			<ul class="nav nav-pills nav-stacked" role="tablist">
+			  <li role="presentation" ><a ng-click='saveList()'>Save</a></li>
+			  <li role="presentation"><a ng-click='clearList()'>Clear</a></li>
+			</ul>
   		</div>
   	</div>
 
-  	<div ng-repeat='cell in list track by $index' class='list-group-item'>
+  	<div ng-repeat='cell in list track by $index' id='meal-list-item' class='list-group-item'>
   		{{ cell.fields.item_name }}
-		<br>{{ cell.fields.brand_name }}
+		<br>- {{ cell.fields.brand_name }} -
   	</div>
-  </div>
+  </div> <!-- close Left Column Container -->
 
   <!-- Right Column Container -->
   <div id='right' class="right col-xs-8 col-md-8 partial">
@@ -40,7 +42,7 @@
 	    <!-- Tab Functionality -->
 	    <div ng-show="tab.isSet(1)" >
 
-	      <div>
+	      <div id='searchBar'>
 		      <form class="navbar-form">
 		        <div class="form-group">
 		          <input type="text" ng-model='term' class="form-control" placeholder="Takeout Item">
@@ -54,20 +56,26 @@
 
 				<div class='row' ng-init='reveal=false'>	
 					<div class='col-md-4 cell list-group-item' ng-repeat='cell in selection'>
-						<div class='leader'>
-						{{ cell.fields.item_name }}
-						<br>{{ cell.fields.brand_name }}
+					<!--   --> 
+					<!-- ng-controller='TabController as mealTab' mealTab.setTab(1) mealTab.setTab(2)  -->
+						<div class='meal-buttons' >
+							<ul class="nav nav-tabs" role="tablist">
+							  <li role="presentation" ng-class="{ active: mealTab.isSet(1)}">
+							  	<a href ng-click="reveal=!reveal">Info</a>
+							  </li>
+							  <li role="presentation" ng-class="{ active: mealTab.isSet(2)}">
+							  	<a href ng-click="appendList(cell)">Select</a>
+							  </li>
+							</ul>
 						</div>
 
-						<div class='buttons'>
-							<div><button ng-click='reveal=!reveal' class="btn btn-default">Info</button></div>
-							<div>
-							<button ng-click='appendList(cell)' id='selectButton' class="btn btn-default">Select</button>
-							</div>
+						<div class='leader' ng-show='!reveal' ng-hide='reveal'>
+							{{ cell.fields.item_name }}
+							<br>- {{ cell.fields.brand_name }} -
 						</div>
 
-						<div ng-show='reveal' ng-hide='!reveal'>
-				            <br>calories: {{cell.fields.nf_calories}}  g
+						<div ng-show='reveal' ng-hide='!reveal' id='nutritional-facts'>
+				            calories: {{cell.fields.nf_calories}}  g
 					        <br>total_fat: {{cell.fields.nf_total_fat}} g
 					        <br>saturated_fat: {{cell.fields.nf_saturated_fat}} g
 					        <br>trans_fat: {{cell.fields.nf_trans_fatty_acid}} g
@@ -84,8 +92,10 @@
 					        <br>calcium: {{ cell.fields.nf_calcium_dv }} %
 					        <br>iron: {{ cell.fields.nf_iron_dv }} %
 				        </div>	<!-- close div, nutritional facts -->
+
 					</div> <!-- close div, class: 'cell' -->
 				</div> <!-- close div, class: 'row' -->
+
 			</div> <!-- close div, class: 'list-group' -->
 	    </div> <!-- close div, ng-show='tab.isSet(1)' -->
 
@@ -117,28 +127,45 @@
 	      </div>
 	    </div>
 
-	    <div ng-show="tab.isSet(3)" ng-controller='StatsController'>
+	    <div ng-show="tab.isSet(3)" ng-controller='StatsController' ng-init='showMenuInfo=false'>
 	    	<div>
-	        <button ng-click='getStats(myMeals)' class="btn btn-default">Generate Stats</button>
+		        <button ng-click='getStats(myMeals)' id='GenStatsBtn' class="btn btn-default">Generate Stats</button>
 	        </div>
-	        <div ng-repeat='menu in myStats track by $index'>
-	        	<p>Menu {{$index+1}}:</p>
-	        	<p>Total Calories: {{ menu.calories }}</p>
-	        	<p>Total Fat: {{ menu.total_fat }}</p>
-	        	<p>Total Saturated Fat: {{ menu.saturated_fat }}</p>
-	        	<p>Total Trans Fat: {{ menu.trans_fat }}</p>
-	        	<p>Total Cholesterol: {{ menu.cholesterol }}</p>
 
-	        	<p>Total Sodium: {{ menu.sodium }}</p>
-	        	<p>Total Carbs: {{ menu.total_carbs }}</p>
-	        	<p>Total Fiber: {{ menu.fiber }}</p>
-	        	<p>Total Sugar: {{ menu.sugar }}</p>
-	        	<p>Total Protein: {{ menu.protein }}</p>
+	        <div class='col-md-4 menu-cell list-group-item' ng-repeat='menu in myStats track by $index' id='stats'>
 
-	        	<p>Total Vitamin A: {{ menu.vitamin_a }}</p>
-	        	<p>Total Vitamin C: {{ menu.vitamin_c }}</p>
-	        	<p>Total Calcium: {{ menu.calcium }}</p>
-	        	<p>Total Iron: {{ menu.iron }}</p>
+	        	<div class='menu-info-btn'>
+					<ul class="nav nav-tabs" role="tablist">
+					  <li role="presentation">
+					  	<a href ng-click="showMenuInfo=!showMenuInfo">Info</a>
+					  </li>
+					</ul>
+				</div>
+
+		       	<div ng-show='showMenuInfo' ng-hide='!showMenuInfo' ng-repeat='meal in menu.all_meals' id='meal-list-item' class='list-group-item'>
+			  		{{ meal }}
+			  	</div>
+
+			  	<div ng-show='!showMenuInfo' ng-hide='showMenuInfo'>
+		        	<p>Menu {{ $index+1 }}:</p>
+		        	<p class='nutritional-stat'>Total Calories: {{ menu.calories }} g</p>
+		        	<p class='nutritional-stat'>Total Fat: {{ menu.total_fat }} g</p>
+		        	<p class='nutritional-stat'>Total Saturated Fat: {{ menu.saturated_fat}} g</p>
+		        	<p class='nutritional-stat'>Total Trans Fat: {{ menu.trans_fat }} g</p>
+		        	
+		        	<p class='nutritional-stat'>Total Carbs: {{ menu.total_carbs }} g</p>
+		        	<p class='nutritional-stat'>Total Fiber: {{ menu.fiber }} g</p>
+		        	<p class='nutritional-stat'>Total Sugar: {{ menu.sugar }} g</p>
+		        	<p class='nutritional-stat'>Total Protein: {{ menu.protein }} g</p>
+
+		        	<p class='nutritional-stat'>Total Cholesterol: {{ menu.cholesterol }} mg</p>
+		        	<p class='nutritional-stat'>Total Sodium: {{ menu.sodium }} mg</p>
+
+		        	<p class='nutritional-stat'>Total Vitamin A: {{ menu.vitamin_a }}%</p>
+		        	<p class='nutritional-stat'>Total Vitamin C: {{ menu.vitamin_c }}%</p>
+		        	<p class='nutritional-stat'>Total Calcium: {{ menu.calcium }}%</p>
+		        	<p class='nutritional-stat'>Total Iron: {{ menu.iron }}%</p>
+	        	</div>
 			</div>
 	    </div>
   	</section>

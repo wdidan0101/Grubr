@@ -9,7 +9,7 @@
     
     $scope.runSearch = function(term){
       $scope.selection = [];
-      $http.get("https://api.nutritionix.com/v1_1/search/"+term+"?results=0:10&fields=item_name,brand_name,item_id,nf_calories,nf_total_fat,nf_saturated_fat,nf_trans_fatty_acid,nf_cholesterol,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein,nf_vitamin_a_dv,nf_vitamin_c_dv,nf_calcium_dv,nf_iron_dv,nf_serving_size_qty,nf_serving_size_unit&appId=5f122b83&appKey=911595347512d4f3ad996f7317a355f2")
+      $http.get("https://api.nutritionix.com/v1_1/search/"+term+"?results=0:9&fields=item_name,brand_name,item_id,nf_calories,nf_total_fat,nf_saturated_fat,nf_trans_fatty_acid,nf_cholesterol,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein,nf_vitamin_a_dv,nf_vitamin_c_dv,nf_calcium_dv,nf_iron_dv,nf_serving_size_qty,nf_serving_size_unit&appId=5f122b83&appKey=911595347512d4f3ad996f7317a355f2")
       .success(function(data){
         $scope.selection = data['hits'];
       });
@@ -84,28 +84,13 @@
     };
 
     $scope.getInfo = function() {
-      // $http.post("https://api.edamam.com/api/nutrient-info?extractOnly&app_id=494c4923&app_key=8b3e8fb54c99dba6de13a49c3f86da57",
-      //           recipe,
-      //           {
-      //             headers: {'Content-Type': 'application/json'}
-      //           })
-
       $http({
             url: "https://api.edamam.com/api/nutrient-info?extractOnly&app_id=494c4923&app_key=8b3e8fb54c99dba6de13a49c3f86da57",
             method: "POST",
             data: $scope.recipe,
             headers: {'Content-Type': 'application/json'}
         })
-      // .then(
-      //   function(data){
-      //     // $scope.recipes = data;
-      //     console.log(data)
-      //   }, 
-      //   function(errResponse) {
-      //     console.log(errResponse);
-      //   });
     };
-
   }]);
 
   app.controller('StatsController', ['$scope','$http', function($scope, $http){
@@ -130,7 +115,8 @@
           vitamin_a: 0,
           vitamin_c: 0,
           calcium: 0,
-          iron: 0
+          iron: 0,
+          all_meals: []
         };
         for(var i = 0; i < menuHash.meals.length; i++){
             mySummedMenuHash.calories += menuHash.meals[i].calories
@@ -148,6 +134,8 @@
             mySummedMenuHash.vitamin_c += menuHash.meals[i].vitamin_c
             mySummedMenuHash.calcium += menuHash.meals[i].calcium
             mySummedMenuHash.iron += menuHash.meals[i].iron
+
+            mySummedMenuHash.all_meals.push(menuHash.meals[i].name+" - "+menuHash.meals[i].brand+" -");
         }
         return mySummedMenuHash;
       };

@@ -20,6 +20,8 @@ gem 'httparty', '~> 0.13.1'
 
 ####################################
 
+gem 'pry-rails', group: :development
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
 # Use postgresql as the database for Active Record
@@ -56,4 +58,8 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+ruby "2.1.4"
+
+gem 'rails_12factor', group: :production
 

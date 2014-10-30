@@ -1,18 +1,26 @@
 <!-- <div ng-view></div> -->
 
-<!-- <div id='left-side'>i'm the left side</div>
-<div id='right-side'>right side</div>
- -->
 <%= render 'layouts/navbar' %>
 
 
-<div class="row fit">
+<div class="row fit" ng-controller="SelectController">
 
   <!-- Left Column Container -->
-  <div class="left col-xs-12 col-sm-4 col-md-4 partial">Grub:</div>
+  <div id='left' class="col-xs-12 col-sm-4 col-md-4 partial">
+  	<div>
+  		Daily Grub:
+  		<button ng-click='saveList()' class="btn btn-default saveButton">Save</button>
+  		<button ng-click='clearList()' class="btn btn-default saveButton">Clear</button>
+  	</div>
+
+  	<div ng-repeat='cell in list track by $index' class='list-group-item'>
+  		{{ cell.fields.item_name }}
+		<br>{{ cell.fields.brand_name }}
+  	</div>
+  </div>
 
   <!-- Right Column Container -->
-  <div class="right col-xs-8 col-md-8 partial">
+  <div id='right' class="right col-xs-8 col-md-8 partial">
   	
   	<!-- Tabs Container -->
   	<section class="tab" ng-controller='TabController as tab'>
@@ -28,69 +36,92 @@
 	    </ul>
 
 	    <!-- Tab Functionality -->
-	    <div ng-show="tab.isSet(1)" ng-controller="SelectController as store">
-	      <h4>Restaurants</h4>
+	    <div ng-show="tab.isSet(1)" >
 
 	      <div>
-		      <form class="navbar-form" ng-submit='store.submit()'>
+		      <form class="navbar-form">
 		        <div class="form-group">
-		          <input type="text" ng-model='store.term' class="form-control" placeholder="Search">
+		          <input type="text" ng-model='term' class="form-control" placeholder="Takeout Item">
+      		      <button ng-click='runSearch(term)' class="btn btn-default">Search</button>
 		        </div>
 		      </form>
-		      <button ng-click='store.runSearch(store.term)' class="btn btn-default" value="Submit">Submit</button>
 	      </div>
 
 	      <!--  Restaurant Products Container  -->
 			<div class='list-group' >
-			      <!--  Product Container  -->
-			      <div class="list-group-item" ng-repeat="item in store.selection">
-			            brand: {{ item['fields']['brand_name'] }}
-			            <br>name: {{ item['fields']['item_name'] }}
-			            <br>calories: {{item['fields']['nf_calories']}}  g
-				        <br>total_fat: {{item['fields']['nf_total_fat']}} g
-				        <br>saturated_fat: {{item['fields']['nf_saturated_fat']}} g
-				        <br>trans_fat: {{item['fields']['nf_trans_fatty_acid']}} g
-				        <br>cholesterol: {{item['fields']['nf_cholesterol']}} mg
-				        <br>sodium: {{ item['fields']['nf_sodium']}} mg
-				        <br>total_carbs: {{ item['fields']['nf_total_carbohydrate'] }} g
-				        <br>fiber: {{ item['fields']['nf_dietary_fiber'] }} g
-				        <br>sugar: {{ item['fields']['nf_sugars'] }} g
-				        <br>protein: {{ item['fields']['nf_protein'] }} g
-				        <br>vitamin_a: {{ item['fields']['nf_vitamin_a_dv'] }} %
-				        <br>vitamin_c: {{ item['fields']['nf_vitamin_c_dv'] }} %
-				        <br>calcium: {{ item['fields']['nf_calcium_dv'] }} %
-				        <br>iron: {{ item['fields']['nf_iron_dv'] }} %
-			      </div>
+
+				<div class='row' ng-init='reveal=false'>	
+					<div class='col-md-4 cell list-group-item' ng-repeat='cell in selection'>
+						<div class='leader'>
+						{{ cell.fields.item_name }}
+						<br>{{ cell.fields.brand_name }}
+						</div>
+
+						<div class='buttons'>
+							<div><button ng-click='reveal=!reveal' class="btn btn-default">Info</button></div>
+							<div>
+							<button ng-click='appendList(cell)' id='selectButton' class="btn btn-default">Select</button>
+							</div>
+						</div>
+
+						<div ng-show='reveal' ng-hide='!reveal'>
+				            <br>calories: {{cell.fields.nf_calories}}  g
+					        <br>total_fat: {{cell.fields.nf_total_fat}} g
+					        <br>saturated_fat: {{cell.fields.nf_saturated_fat}} g
+					        <br>trans_fat: {{cell.fields.nf_trans_fatty_acid}} g
+					        <br>cholesterol: {{cell.fields.nf_cholesterol}} mg
+
+					        <br>sodium: {{ cell.fields.nf_sodium}} mg
+					        <br>total_carbs: {{ cell.fields.nf_total_carbohydrate }} g
+					        <br>fiber: {{ cell.fields.nf_dietary_fiber }} g
+					        <br>sugar: {{ cell.fields.nf_sugars }} g
+					        <br>protein: {{ cell.fields.nf_protein }} g
+
+					        <br>vitamin_a: {{ cell.fields.nf_vitamin_a_dv }} %
+					        <br>vitamin_c: {{ cell.fields.nf_vitamin_c_dv }} %
+					        <br>calcium: {{ cell.fields.nf_calcium_dv }} %
+					        <br>iron: {{ cell.fields.nf_iron_dv }} %
+				        </div>	<!-- close div, nutritional facts -->
+					</div> <!-- close div, class: 'cell' -->
+				</div> <!-- close div, class: 'row' -->
+			</div> <!-- close div, class: 'list-group' -->
+	    </div> <!-- close div, ng-show='tab.isSet(1)' -->
+
+	    <div ng-show="tab.isSet(2)" ng-controller='RecipesController'>
+	      <h4>Add a Recipe</h4>
+	      <form ng-submit='submitRecipe()'>
+	      	<p><input type='text' ng-model='title' placeholder='title'></p>
+	      	<p><input type='text' ng-model='ingredients' placeholder='ingredients'></p>
+	      	<p><input type='text' ng-model='yield' placeholder='yield'></p>
+	      	<input type='submit' value='Submit'>
+	      </form>
+	      <button ng-click='getInfo()' class="btn btn-default">Search</button>
+	    </div>
+
+	    <div ng-show="tab.isSet(3)" ng-controller='StatsController'>
+	    	<div>
+	        <button ng-click='getStats(myMeals)' class="btn btn-default">Generate Stats</button>
+	        </div>
+	        <div ng-repeat='menu in myStats track by $index'>
+	        	<p>Menu {{$index+1}}:</p>
+	        	<p>Total Calories: {{ menu.calories }}</p>
+	        	<p>Total Fat: {{ menu.total_fat }}</p>
+	        	<p>Total Saturated Fat: {{ menu.saturated_fat }}</p>
+	        	<p>Total Trans Fat: {{ menu.trans_fat }}</p>
+	        	<p>Total Cholesterol: {{ menu.cholesterol }}</p>
+
+	        	<p>Total Sodium: {{ menu.sodium }}</p>
+	        	<p>Total Carbs: {{ menu.total_carbs }}</p>
+	        	<p>Total Fiber: {{ menu.fiber }}</p>
+	        	<p>Total Sugar: {{ menu.sugar }}</p>
+	        	<p>Total Protein: {{ menu.protein }}</p>
+
+	        	<p>Total Vitamin A: {{ menu.vitamin_a }}</p>
+	        	<p>Total Vitamin C: {{ menu.vitamin_c }}</p>
+	        	<p>Total Calcium: {{ menu.calcium }}</p>
+	        	<p>Total Iron: {{ menu.iron }}</p>
 			</div>
-	    </div>
-	    <div ng-show="tab.isSet(2)">
-	      <h4>Some Recipes</h4>
-	    </div>
-	    <div ng-show="tab.isSet(3)">
-	        <h4>Your Stats</h4>
 	    </div>
   	</section>
 </div>
 
-
-
-
-<!--   <section class="tab" ng-controller='TabController as tab'>
-    <ul class="nav nav-pills">
-      <li ng-class="{ active: tab.isSet(1) }">
-        <a href ng-click="tab.setTab(1)">Description</a></li>
-      <li ng-class="{ active: tab.isSet(2) }">
-        <a href ng-click="tab.setTab(2)">Specs</a></li>
-      <li ng-class="{ active: tab.isSet(3) }">
-        <a href ng-click="tab.setTab(3)">Reviews</a></li>
-    </ul>
-    <div ng-show="tab.isSet(1)">
-      <h4>Description</h4>
-    </div>
-    <div ng-show="tab.isSet(2)">
-      <h4>Specs</h4>
-    </div>
-    <div ng-show="tab.isSet(3)">
-      <h4>Reviews</h4>
-    </div>
-  </section>

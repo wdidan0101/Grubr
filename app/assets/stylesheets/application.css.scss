@@ -14,15 +14,97 @@
  *= require_self
  */
 
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.right {
+@font-face {
+    font-family: 'airplaneregular';
+    src: url('/fonts/airplane/airplane-webfont.eot');
+    src: url('/fonts/airplane/airplane-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/airplane/airplane-webfont.woff2') format('woff2'),
+         url('/fonts/airplane/airplane-webfont.woff') format('woff'),
+         url('/fonts/airplane/airplane-webfont.ttf') format('truetype'),
+         url('/fonts/airplane/airplane-webfont.svg#airplaneregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'green_pilowwregular';
+    src: url('/fonts/greenpiloww/greenpil-webfont.eot');
+    src: url('/fonts/greenpiloww/greenpil-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/greenpiloww/greenpil-webfont.woff2') format('woff2'),
+         url('/fonts/greenpiloww/greenpil-webfont.woff') format('woff'),
+         url('/fonts/greenpiloww/greenpil-webfont.ttf') format('truetype'),
+         url('/fonts/greenpiloww/greenpil-webfont.svg#green_pilowwregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'fira';
+    src: url('/fonts/fira/firasans-book-webfont.eot');
+    src: url('/fonts/fira/firasans-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/fira/firasans-book-webfont.woff2') format('woff2'),
+         url('/fonts/fira/firasans-book-webfont.woff') format('woff'),
+         url('/fonts/fira/firasans-book-webfont.ttf') format('truetype'),
+         url('/fonts/fira/firasans-book-webfont.svg#fira_sansbook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'mergelight';
+    src: url('/fonts/mergeLight/philatype_-_merge-light-webfont.eot');
+    src: url('/fonts/mergeLight/philatype_-_merge-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/mergeLight/philatype_-_merge-light-webfont.woff2') format('woff2'),
+         url('/fonts/mergeLight/philatype_-_merge-light-webfont.woff') format('woff'),
+         url('/fonts/mergeLight/philatype_-_merge-light-webfont.ttf') format('truetype'),
+         url('/fonts/mergeLight/philatype_-_merge-light-webfont.svg#mergelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: fira;
+	font-size: 40px;
+}
+
+.tab {
+	
+}
+
+#Grubr-Logo {
+	font-size: 40px;
+}
+
+#myCaret {
+    margin-right: 140px;
+}
+
+.saveButton {
+	float: right;	
+}
+
+.leader {
+	display: inline-block;
+	float: left;
+	font-size: 15px;
+}
+
+.buttons {
+	display: inline-block;
+	float: right;
+	clear: both;
+}
+
+#right {
 
 	height: 50px;
 	float: right;
 	display: inline-block;
-	background-color: green;
 }
 
 .fit {
@@ -30,12 +112,11 @@
 	margin: auto;
 }
 
-.left {
+#left {
 
 	height: 50px;
 	float: left;
 	display: inline-block;
-	background-color: blue;
 }
 
 .partial {
@@ -43,16 +124,27 @@
 }
 
 .logo {
-	margin-left: 50px;
+	margin-top: 10px;
+	margin-left: 140px;
+	font-size: 40px;
 }
 
 .login {
 	margin-top: 10px;
 }
 
+.cell {
+	height: 20em;
+}
 
+@font-face {
+    font-family: custom;
+    src: url("../font/Airplane.ttf");
+}
 
-
+html {
+	font-family: custom;
+}
 
 
 

@@ -76,6 +76,10 @@ body {
 	
 }
 
+#AddRecipeForm {
+    margin-left: 40px;
+}
+
 #Grubr-Logo {
 	font-size: 40px;
 }
@@ -86,6 +90,10 @@ body {
 
 .saveButton {
 	float: right;	
+}
+
+.clearButton {
+    clear: right;
 }
 
 .leader {

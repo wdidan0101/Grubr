@@ -1,6 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grubr</title>
+  <link data-turbolinks-track="true" href="/assets/menus.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/restaurants.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/sessions.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/users.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/application.css?body=1" media="all" rel="stylesheet" />
+  <script data-turbolinks-track="true" src="/assets/jquery.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/affix.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/alert.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/button.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/carousel.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/collapse.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/dropdown.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/tab.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/transition.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/scrollspy.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/modal.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/tooltip.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap/popover.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap-sprockets.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery_ujs.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/angular/angular.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/angular-route/angular-route.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/angular-rails-templates.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/home.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/menus.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/ng-app/app.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/ng-app/controllers/home.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/restaurants.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/sessions.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/users.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/application.js?body=1"></script>
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="qFjvCyoZ3a5awS7T3KGKD8/qck/ofhIGkQpLeFeaPws=" name="csrf-token" />
+  <base href="/">
+</head>
+<body ng-app="Grubr">
+
 <!-- <div ng-view></div> -->
 
-<%= render 'layouts/navbar' %>
+<nav class="navbar navbar-default" role="navigation">
+
+  <div class="container-fluid">
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- <div class="navbar-header"> -->
+    <div class="logo">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <!-- <a class="navbar-brand" href="#">Brand</a> -->
+      <a class="navbar-brand" id='Grubr-Logo' href="#">
+        <!-- <img alt="Brand" src="..."> -->Grubr
+      </a>
+
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <!-- Right side elements -->
+        <ul class="nav navbar-nav navbar-right login">
+          <li class="dropdown" id='myCaret'>
+
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Action</a></li>
+              <li class="divider"></li>
+              <li><a data-method="delete" href="/logout" rel="nofollow">Log out</a></li>
+            </ul>
+          </li>
+        </ul>
+     
+
+    </div><!-- /.navbar-collapse -->
+
+
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <div class="row fit" ng-controller="SelectController">
@@ -8,10 +105,10 @@
   <!-- Left Column Container -->
   <div id='left' class="col-xs-12 col-sm-4 col-md-4 partial">
   	<div>
-  		<div style="display:inline-block">Daily Grub:</div>
-  		<div style="display:inline-block">
-	  		<div><button ng-click='saveList()' class="btn btn-default saveButton">Save</button></div>
-  			<div><button ng-click='clearList()' class="btn btn-default clearButton">Clear</button></div>
+  		<span>Daily Grub:</span>
+  		<div>
+  		<div><button ng-click='saveList()' class="btn btn-default saveButton">Save</button></div>
+  		<div><button ng-click='clearList()' class="btn btn-default saveButton">Clear</button></div>
   		</div>
   	</div>
 
@@ -144,3 +241,7 @@
   	</section>
 </div>
 
+
+
+</body>
+</html>

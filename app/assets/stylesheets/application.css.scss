@@ -194,15 +194,39 @@ body {
     height: 525px;
 }
 
-@font-face {
-    font-family: custom;
-    src: url("../font/Airplane.ttf");
+.shift-up {
+    margin-top: -20px;
 }
 
-html {
-	font-family: custom;
+.shift-up-2 {
+    margin-top: -12px;
 }
 
+.sign-up-link {
+    font-size: 12px;
+    margin: 0;
+}
 
+.nav-height {
+    height: 94px;
+}
 
+.shift-down {
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 
+.inline-block {
+    display: inline-block;
+}
+
+.navbar-brand {
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.shrink-form {
+    width: 25%;
+    margin-left: 100px;
+}

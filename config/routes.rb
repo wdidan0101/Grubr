@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get '/search' => 'restaurants#index', as: :search
    ###################################
 
+   ######### MENU ROUTES ##########
    post '/menus' => 'menus#create'
    get '/menus' => 'menus#index'
 

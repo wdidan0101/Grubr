@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root 'application#index'
-  # get '*path' => 'application#index'
 
   ######### USER ROUTES ##########
   get 'users/new' => 'users#new', as: :signup
@@ -17,12 +16,12 @@ Rails.application.routes.draw do
   delete '/logout' =>'sessions#destroy', as: :log_out
   ###################################
 
-   ######### RESTAURANT ROUTES ##########
-    get '/search' => 'restaurants#index', as: :search
-   ###################################
+  ######### RESTAURANT ROUTES ##########
+  get '/search' => 'restaurants#index', as: :search
+  ###################################
 
-   ######### MENU ROUTES ##########
-   post '/menus' => 'menus#create'
-   get '/menus' => 'menus#index'
+  ######### MENU ROUTES ##########
+  post '/menus' => 'menus#create'
+  get '/menus' => 'menus#index'
 
 end

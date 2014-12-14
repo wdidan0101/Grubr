@@ -81,7 +81,7 @@
 
 body {
 	font-family: mergeLight;
-	font-size: 40px;
+	font-size: 12px;
 }
 
 .nutritional-stat {
@@ -194,39 +194,70 @@ body {
     height: 525px;
 }
 
-.shift-up {
-    margin-top: -20px;
+.shrink-form {
+    width: 25%;
+    margin-left: 100px;
 }
 
-.shift-up-2 {
-    margin-top: -12px;
-}
+/* ************** */
+/* CAROUSEL */
+/* ************** */
 
-.sign-up-link {
-    font-size: 12px;
-    margin: 0;
+.image-fit {
+    width: 100%;
+    height: 400px !important;
+    margin: 0 auto;
 }
+.item {
+    height: 300px;
+}
+.icon-fit {
+    width: 360px;
+    height: 200px;
+}
+.description {
+    width: 90%;
+    height: 85px;
+}
+/* ************** */
+/* NAVIGATION BAR */
+/* ************** */
 
 .nav-height {
     height: 94px;
 }
-
 .shift-down {
     display: inline-block;
     margin-top: 0px;
     margin-bottom: 0px;
 }
-
-.inline-block {
-    display: inline-block;
-}
-
 .navbar-brand {
     margin-top: 20px;
     margin-bottom: 0px;
 }
-
-.shrink-form {
-    width: 25%;
-    margin-left: 100px;
+.sign-up-link {
+    font-size: 12px;
+    margin: 0;
 }
+.shift-up {
+    margin-top: -20px;
+}
+.shift-up-2 {
+    margin-top: -12px;
+}
+.inline-block {
+    display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

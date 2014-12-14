@@ -1,5 +1,5 @@
 module SessionsHelper
-	    ################################
+	################################
     # Ensure current_user returns 
     #    a User object from MongoDB
     ################################
@@ -7,22 +7,18 @@ module SessionsHelper
     # LOG IN: set user ID cookie in user's browser
     def log_in(user)
         cookies.permanent[:cookie_id] = user.id
-
         @current_user = user
     end
 
     # LOG OUT: remove cookie from user's browser
     def log_out
         cookies.delete(:cookie_id)
-
     end
 
     # true if user logged in
     def logged_in?
-        cookies[:cookie_id] ? true : false
-
+        cookies[:cookie_id] ? true : false # cookies hash
     end
-
 
     ################################
     # Ensure current_user returns 

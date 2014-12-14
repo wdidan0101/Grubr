@@ -20,8 +20,8 @@
 //= require_tree .
 
 
-// $(document).ready(function() {
-// 	$('#selectButton').click(function () {
-// 		$('#left').append($('span'));
-// 	});
-// });
+$(document).ready(function() {
+	$('.carousel').carousel({
+	  interval: false
+	});
+});

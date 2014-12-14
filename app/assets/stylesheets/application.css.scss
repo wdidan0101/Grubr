@@ -223,31 +223,52 @@ body {
 /* NAVIGATION BAR */
 /* ************** */
 
-.nav-height {
-    height: 94px;
+#menu {
+  width: 550px;
+  height: 35px;
+  font-size: 25px;
+  font-family: mergelight;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 3px 2px 3px #333333;
+  /* background-color: #8AD9FF; */
+  border-radius: 8px;
+  float: left;
 }
-.shift-down {
-    display: inline-block;
-    margin-top: 0px;
-    margin-bottom: 0px;
+
+#menu ul {
+  height: auto;
+  padding: 8px 0px;
+  margin: 0px;
 }
-.navbar-brand {
-    margin-top: 20px;
-    margin-bottom: 0px;
+
+#menu li{
+  float: left;
+  display: inline;
+  padding: 20px;
 }
-.sign-up-link {
-    font-size: 12px;
-    margin: 0;
+
+#menu a {
+  text-decoration: none;
+  color: #00F;
+  padding: 8px 8px 8px 8px;
 }
-.shift-up {
-    margin-top: -20px;
+
+#menu a:hover {
+  color: #F90;
+  background-color: #FFF;
 }
-.shift-up-2 {
-    margin-top: -12px;
+
+#login-form {
+    display: block;
+    float: right;
+    margin-right: 20px;
 }
-.inline-block {
-    display: inline-block;
+#grub-nav-bar {
+    height: 60px;
 }
+
+
 
 
 

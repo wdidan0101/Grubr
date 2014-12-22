@@ -1,43 +1,36 @@
 <div id="grub-nav-bar">
   <div id="menu">
     <ul>
-      <li><a href="index.html">Grub</a></li>
+      <li><a id='grub-logo' href="/">Grub</a></li>
     </ul>
   </div> <!-- close menu div-->
 
   <div id="login-form">
-      <!-- Right side elements -->
       <% unless logged_in? %>
-
       <ul class="nav navbar-nav navbar-right login">
-        <div class='sign-up-link'>
-        
+        <div>
+          <%= form_for(:session, url: sessions_path, html: {class: "form-inline"}) do |f| %>
+           <div class='form-group shift-up'>
+              <%= f.label :email, class: 'sr-only' %> 
+              <%= f.text_field :email, class:'form-control', placeholder:'Email'%> </div>
+           <div class='form-group shift-up'>
+              <%= f.label :password, class: "sr-only" %> 
+              <%= f.password_field :password, class: 'form-control', placeholder:'Password' %> 
+           </div>
+              <%= f.submit "Sign In", class: "btn btn-default shift-up-2" %>
         </div>
-        <%= form_for(:session, url: sessions_path, html: {class: "form-inline"}) do |f| %>
-         <div class='form-group shift-up'>
-            <%= f.label :email, class: 'sr-only' %> 
-            <%= f.text_field :email, class:'form-control', placeholder:'Email'%> </div>
-         <div class='form-group shift-up'>
-            <%= f.label :password, class: "sr-only" %> 
-            <%= f.password_field :password, class: 'form-control', placeholder:'Password' %> 
-         </div>
-            <%= f.submit "Sign In!", class: "btn btn-default shift-up-2" %>
-         <% end %>
-         </ul>
+
+        <div id="menu-b">
+          <ul>
+            <li><a id='sign-up'>Not a member?</a></li>
+          </ul>
+        </div>
+      <% end %>
       <% else %>
-        <ul class="nav navbar-nav navbar-right login">
-          <li class="dropdown" id='myCaret'>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li class="divider"></li>
-              <li><%= link_to "Log out", log_out_path, method: :delete%></li>
-            </ul>
-          </li>
-        </ul>
+        <!-- <li><%#= link_to "Log out", log_out_path, method: :delete%></li> -->
       <% end %>
     </div> <!-- close login-form div -->
-</div><!-- /.container-fluid -->
+</div><!-- /grub-nav-bar -->
 
 
 

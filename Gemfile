@@ -23,7 +23,7 @@ gem 'httparty', '~> 0.13.1'
 gem 'pry-rails', group: :development
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.5'
+gem 'rails', '4.1.7'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
